@@ -1,0 +1,12 @@
+[user]
+	name = wu
+	email = wullewutz@users.noreply.github.com
+[diff]
+	guitool = meld
+[merge]
+	tool = kdiff3
+[core]
+	autocrlf = False
+	editor = emacs
+[push]
+	default = simple
