@@ -8,10 +8,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;          Look and Feel           ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(require 'color-theme)
-
-(if (display-graphic-p)
-    (color-theme-solarized))
   
 (nyan-mode 1)
 (tool-bar-mode -1)
@@ -26,7 +22,7 @@
 ;; http://julienblanchard.com/2016/fancy-rust-development-with-emacs/
 ;; https://github.com/racer-rust/emacs-racer
 (setq racer-cmd "~/.cargo/bin/racer") ;; Rustup binaries PATH
-(setq racer-rust-src-path "~/.multirust/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src") ;; Rust source code PATH
+(setq racer-rust-src-path "~/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src") ;; Rust source code PATH
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'rust-mode-hook
@@ -52,7 +48,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (company racer flycheck-rust ## cargo rust-mode nyan-mode jedi helm color-theme-solarized))))
+    (company-racer company racer flycheck-rust ## cargo rust-mode nyan-mode jedi helm color-theme-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
