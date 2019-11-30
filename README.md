@@ -7,7 +7,7 @@ My personal dotfiles
 cd
 git clone https://github.com/wullewutz/dotfiles.git
 cd dotfiles/
-stow emacs
+stow spacemacs
 stow git
 stow i3
 ...
