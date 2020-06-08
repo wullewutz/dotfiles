@@ -27,7 +27,7 @@ endif
 
 call plug#begin()
   Plug 'morhetz/gruvbox'
-  Plug '/home/wu/.cargo/bin/sk'
+  Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
   Plug 'lotabout/skim.vim'
 call plug#end()
 
