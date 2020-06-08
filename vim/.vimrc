@@ -1,3 +1,6 @@
+" Avoid ugly background color issues after scrolling
+set term=screen-256color
+
 syntax on
 set encoding=utf-8
 
@@ -17,6 +20,24 @@ set incsearch
 " Store info from no more than 100 files at a time, 9999 lines of text, 
 " 100kb of data. Useful for copying large amounts of data between files.
 set viminfo='100,<9999,s100
+
+" Always show status line
+set laststatus=2
+
+" Status line setup
+set statusline=
+set statusline+=%#PmenuSel#
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m\
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %y
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\[%{&fileformat}\]
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+set statusline+=\ 
 
 " Plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
