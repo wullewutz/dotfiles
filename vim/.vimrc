@@ -24,21 +24,6 @@ set viminfo='100,<9999,s100
 " Always show status line
 set laststatus=2
 
-" Status line setup
-set statusline=
-set statusline+=%#PmenuSel#
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
-set statusline+=%=
-set statusline+=%#CursorColumn#
-set statusline+=\ %y
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-set statusline+=\ 
-
 " Plugins
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -50,6 +35,8 @@ call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
   Plug 'lotabout/skim.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'vim-airline/vim-airline'
 call plug#end()
 
 autocmd VimEnter * colorscheme gruvbox
