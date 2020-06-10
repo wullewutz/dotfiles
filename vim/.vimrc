@@ -4,6 +4,12 @@ set term=screen-256color
 syntax on
 set encoding=utf-8
 
+" Tabs and spaces
+filetype plugin indent on
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
 " Show line numbers
 set number relativenumber
 
@@ -17,7 +23,7 @@ set incsearch
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
-" Store info from no more than 100 files at a time, 9999 lines of text, 
+" Store info from no more than 100 files at a time, 9999 lines of text,
 " 100kb of data. Useful for copying large amounts of data between files.
 set viminfo='100,<9999,s100
 
