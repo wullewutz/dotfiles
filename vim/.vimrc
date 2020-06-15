@@ -51,6 +51,7 @@ call plug#begin()
   Plug 'lotabout/skim.vim'
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
+  Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 
 autocmd VimEnter * colorscheme gruvbox
@@ -70,6 +71,16 @@ command! -bang -nargs=* RgCursor
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
 
+let g:ycm_language_server =
+  \ [
+  \   {
+  \     'name': 'rust',
+  \     'cmdline': ['rust-analyzer'],
+  \     'filetypes': ['rust'],
+  \     'project_root_files': ['Cargo.toml']
+  \   }
+  \ ]
+
 " Custom mapppings
 nnoremap <Leader>/ :Rg<cr>
 nnoremap <Leader>* :RgCursor<cr>
@@ -77,3 +88,6 @@ nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <Leader>gf :GFiles<cr>
 nnoremap <Leader>gs :GFiles?<cr>
+nnoremap <Leader>jd :YcmCompleter GoTo<cr>
+nnoremap <Leader>jr :YcmCompleter GoToReferences<cr>
+nnoremap <Leader>jt :YcmCompleter GoToType<cr>
