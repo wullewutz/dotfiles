@@ -4,7 +4,15 @@ set term=screen-256color
 syntax on
 set encoding=utf-8
 
-" Tabs and spaces
+" Leader Key
+let mapleader = " "
+
+" Execute project-local .vimrc, but in a secure way
+" (No write-to-file or execution of shell commands)
+set exrc
+set secure
+
+" Default tabs and spaces
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -48,4 +56,24 @@ call plug#end()
 autocmd VimEnter * colorscheme gruvbox
 set background=dark
 
-command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+command! -bang -nargs=* RgCursor
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(expand('<cword>')), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+
+" Custom mapppings
+nnoremap <Leader>/ :Rg<cr>
+nnoremap <Leader>* :RgCursor<cr>
+nnoremap <Leader>b :Buffers<cr>
+nnoremap <Leader>f :Files<cr>
+nnoremap <Leader>gf :GFiles<cr>
+nnoremap <Leader>gs :GFiles?<cr>
