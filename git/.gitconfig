@@ -11,3 +11,5 @@
 	excludesfile = /home/mheinl/.gitignore_global
 [push]
 	default = simple
+[pull]
+	rebase = false
