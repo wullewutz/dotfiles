@@ -31,6 +31,11 @@ set incsearch
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
+" Change cursor shape in different modes
+let &t_EI = "\033[2 q" " Normal mode: full rectangle
+let &t_SI = "\033[5 q" " Insert mode: |
+let &t_SR = "\033[3 q" " Replace mode: _
+
 " Store info from no more than 100 files at a time, 9999 lines of text,
 " 100kb of data. Useful for copying large amounts of data between files.
 set viminfo='100,<9999,s100
