@@ -7,6 +7,10 @@ set encoding=utf-8
 " Leader Key
 let mapleader = " "
 
+" Faster escaping from insert mode
+set timeoutlen=2000
+set ttimeoutlen=5
+
 " Execute project-local .vimrc, but in a secure way
 " (No write-to-file or execution of shell commands)
 set exrc
