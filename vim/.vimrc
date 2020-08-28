@@ -1,8 +1,18 @@
+" Necesarry for lots of cool vim things
+set nocompatible
+
 " Avoid ugly background color issues after scrolling
 set term=screen-256color
 
 syntax on
 set encoding=utf-8
+
+" Avoid annoying 'No write since last change'-messages
+set hidden
+
+" Fancy autocomplete suggestions using tab key
+set wildmenu
+set wildmode=list:longest,full
 
 " Leader Key
 let mapleader = " "
@@ -61,6 +71,7 @@ call plug#begin()
   Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'ycm-core/YouCompleteMe'
+  Plug 'rust-lang/rust.vim'
 call plug#end()
 
 autocmd VimEnter * colorscheme gruvbox
@@ -89,6 +100,12 @@ let g:ycm_language_server =
   \     'project_root_files': ['Cargo.toml']
   \   }
   \ ]
+
+" Auto rust fmt on save
+let g:rustfmt_autosave = 1
+
+" Remove unwanted trailing whitespaces in some file types.
+autocmd FileType c,cpp,h,hpp,py,md autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap <Leader>/ :Rg<cr>
