@@ -10,9 +10,16 @@ set encoding=utf-8
 " Avoid annoying 'No write since last change'-messages
 set hidden
 
+" Deactivate info buffer at startup
+set shortmess+=I
+
 " Fancy autocomplete suggestions using tab key
 set wildmenu
 set wildmode=list:longest,full
+
+" Split new windows below or right of the current one
+set splitbelow
+set splitright
 
 " Leader Key
 let mapleader = " "
@@ -72,6 +79,7 @@ call plug#begin()
   Plug 'vim-airline/vim-airline'
   Plug 'ycm-core/YouCompleteMe'
   Plug 'rust-lang/rust.vim'
+  Plug 'vimwiki/vimwiki'
 call plug#end()
 
 autocmd VimEnter * colorscheme gruvbox
@@ -117,3 +125,5 @@ nnoremap <Leader>gs :GFiles?<cr>
 nnoremap <Leader>jd :YcmCompleter GoTo<cr>
 nnoremap <Leader>jr :YcmCompleter GoToReferences<cr>
 nnoremap <Leader>jt :YcmCompleter GoToType<cr>
+" Type ii fast to leave insert/visual mode
+:imap ii <Esc>
