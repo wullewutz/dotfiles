@@ -1,4 +1,4 @@
-" Necesarry for lots of cool vim things
+" Necessary for lots of cool vim things
 set nocompatible
 
 " Avoid ugly background color issues after scrolling
@@ -113,7 +113,7 @@ let g:ycm_language_server =
 let g:rustfmt_autosave = 1
 
 " Remove unwanted trailing whitespaces in some file types.
-autocmd FileType c,cpp,h,hpp,py,md autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,h,hpp,py,md,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap <Leader>/ :Rg<cr>
