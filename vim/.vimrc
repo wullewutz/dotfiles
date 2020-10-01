@@ -7,6 +7,11 @@ set term=screen-256color
 syntax on
 set encoding=utf-8
 
+" Search settings: ignore case unless there are
+" uppercase chars in search string
+set ignorecase
+set smartcase
+
 " Avoid annoying 'No write since last change'-messages
 set hidden
 
@@ -113,7 +118,7 @@ let g:ycm_language_server =
 let g:rustfmt_autosave = 1
 
 " Remove unwanted trailing whitespaces in some file types.
-autocmd FileType *.c,*.cpp,*.h,*.hpp,*.py,*.md,*.wiki autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,h,hpp,py,md,wiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap <Leader>/ :Rg<cr>
