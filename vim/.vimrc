@@ -90,12 +90,7 @@ call plug#end()
 autocmd VimEnter * colorscheme gruvbox
 set background=dark
 
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
+command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 
 command! -bang -nargs=* RgCursor
   \ call fzf#vim#grep(
@@ -131,4 +126,4 @@ nnoremap <Leader>jd :YcmCompleter GoTo<cr>
 nnoremap <Leader>jr :YcmCompleter GoToReferences<cr>
 nnoremap <Leader>jt :YcmCompleter GoToType<cr>
 " Type ii fast to leave insert/visual mode
-:imap ii <Esc>
+imap ii <Esc>
