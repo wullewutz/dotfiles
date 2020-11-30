@@ -12,6 +12,10 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+endif
+
 " Avoid annoying 'No write since last change'-messages
 set hidden
 
@@ -92,6 +96,7 @@ set background=dark
 
 command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
 
+" RgCursor command (temporary?) broken
 command! -bang -nargs=* RgCursor
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(expand('<cword>')), 1,
@@ -117,7 +122,8 @@ autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$
 
 " Custom mapppings
 nnoremap <Leader>/ :Rg<cr>
-nnoremap <Leader>* :RgCursor<cr>
+"nnoremap <Leader>* :RgCursor<cr>
+nnoremap <Leader>* :grep <c-r><c-w><cr>:copen<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <Leader>gf :GFiles<cr>
