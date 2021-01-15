@@ -48,6 +48,10 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Highlight column 80 to avoid long lines
+set colorcolumn=80
+highlight ColorColumn ctermbg=darkgray
+
 " Show line numbers
 set number relativenumber
 
@@ -121,6 +125,7 @@ let g:rustfmt_autosave = 1
 autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
+nnoremap ö <C-]>
 nnoremap <Leader>/ :Rg<cr>
 "nnoremap <Leader>* :RgCursor<cr>
 nnoremap <Leader>* :grep <c-r><c-w><cr>:copen<cr>
@@ -131,5 +136,3 @@ nnoremap <Leader>gs :GFiles?<cr>
 nnoremap <Leader>jd :YcmCompleter GoTo<cr>
 nnoremap <Leader>jr :YcmCompleter GoToReferences<cr>
 nnoremap <Leader>jt :YcmCompleter GoToType<cr>
-" Type ii fast to leave insert/visual mode
-imap ii <Esc>
