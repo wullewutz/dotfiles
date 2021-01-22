@@ -121,14 +121,19 @@ let g:ycm_language_server =
 " Auto rust fmt on save
 let g:rustfmt_autosave = 1
 
+" Avoid vimwiki mess up .md files during editing
+let g:vimwiki_global_ext = 0
+
 " Remove unwanted trailing whitespaces in some file types.
 autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap ö <C-]>
+nnoremap <C-j> :cnext<cr>
+nnoremap <C-k> :cprev<cr>
 nnoremap <Leader>/ :Rg<cr>
 "nnoremap <Leader>* :RgCursor<cr>
-nnoremap <Leader>* :grep <c-r><c-w><cr>:copen<cr>
+nnoremap <Leader>* :grep! <cword> *<cr>:copen<cr>
 nnoremap <Leader>b :Buffers<cr>
 nnoremap <Leader>f :Files<cr>
 nnoremap <Leader>gf :GFiles<cr>
