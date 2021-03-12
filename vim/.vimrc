@@ -147,7 +147,6 @@ nnoremap ö <C-]>
 nnoremap Ö :! ctags -R .<cr>
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
-nnoremap <esc> :noh<cr>
 nnoremap <Leader>/ :Grep<space>
 nnoremap <Leader>* :Grep <cword> <cr>:copen<cr>
 nnoremap <Leader>b :ls<cr>:b<space>
