@@ -12,9 +12,23 @@ set encoding=utf-8
 set ignorecase
 set smartcase
 
+" Project wide searching with ripgrep
 if executable('rg')
-    set grepprg=rg\ --vimgrep
+    set grepprg=rg\ --vimgrep\ --smart-case
 endif
+
+" Automatic population of the quickfix list from grep and open it.
+" Stolen from https://gist.github.com/romainl/56f0c28ef953ffc157f36cc495947ab3#file-grep-md
+function! Grep(...)
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+endfunction
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost cgetexpr cwindow
+    autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
 
 " Avoid annoying 'No write since last change'-messages
 set hidden
@@ -100,7 +114,6 @@ call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
   Plug 'lotabout/skim.vim'
-  Plug 'tpope/vim-fugitive'
   Plug 'vim-airline/vim-airline'
   Plug 'ycm-core/YouCompleteMe'
   Plug 'rust-lang/rust.vim'
@@ -109,16 +122,6 @@ call plug#end()
 
 autocmd VimEnter * colorscheme gruvbox
 set background=dark
-
-command! -bang -nargs=* Rg call fzf#vim#rg_interactive(<q-args>, fzf#vim#with_preview('right:50%:hidden', 'alt-h'))
-
-" RgCursor command (temporary?) broken
-command! -bang -nargs=* RgCursor
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(expand('<cword>')), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:60%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \   <bang>0)
 
 let g:ycm_language_server =
   \ [
@@ -141,15 +144,13 @@ autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$
 
 " Custom mapppings
 nnoremap ö <C-]>
+nnoremap Ö :! ctags -R .<cr>
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
-nnoremap <Leader>/ :Rg<cr>
-"nnoremap <Leader>* :RgCursor<cr>
-nnoremap <Leader>* :grep! <cword> *<cr>:copen<cr>
-nnoremap <Leader>b :Buffers<cr>
+nnoremap <esc> :noh<cr>
+nnoremap <Leader>/ :Grep<space>
+nnoremap <Leader>* :Grep <cword> <cr>:copen<cr>
+nnoremap <Leader>b :ls<cr>:b<space>
 nnoremap <Leader>f :Files<cr>
-nnoremap <Leader>gf :GFiles<cr>
-nnoremap <Leader>gs :GFiles?<cr>
-nnoremap <Leader>jd :YcmCompleter GoTo<cr>
-nnoremap <Leader>jr :YcmCompleter GoToReferences<cr>
-nnoremap <Leader>jt :YcmCompleter GoToType<cr>
+nnoremap <Leader>ö :YcmCompleter GoTo<cr>
+nnoremap <Leader>öö :YcmCompleter GoToReferences<cr>
