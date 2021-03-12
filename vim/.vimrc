@@ -19,8 +19,20 @@ endif
 " Avoid annoying 'No write since last change'-messages
 set hidden
 
+" Use mouse for scrolling
+set mouse=a
+
+" Fix empty Screen asking for 'ENTER or type command to continue'
+" (At least on Windows with WSL2)
+set shortmess=a
+"set cmdheight=3
+
 " Deactivate info buffer at startup
 set shortmess+=I
+
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
 
 " Fancy autocomplete suggestions using tab key
 set wildmenu
