@@ -7,9 +7,8 @@ My personal dotfiles
 cd
 git clone https://github.com/wullewutz/dotfiles.git
 cd dotfiles/
-stow spacemacs
+stow vim
 stow git
-stow i3
 ...
 ```
 ## credits
