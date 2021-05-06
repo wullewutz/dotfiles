@@ -52,6 +52,7 @@ set path+=**
 set wildmenu
 set wildmode=list:longest,full
 set wildignorecase
+set wildignore+=*.swp,*.bak,*.o,*.s,*.d
 
 " Split new windows below or right of the current one
 set splitbelow
