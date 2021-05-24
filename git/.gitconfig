@@ -8,7 +8,7 @@
 [core]
 	autocrlf = False
 	editor = vim
-	excludesfile = /home/mheinl/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
 [pull]
