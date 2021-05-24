@@ -1,8 +1,9 @@
 " Necessary for lots of cool vim things
 set nocompatible
 
-" Avoid ugly background color issues after scrolling
-set term=screen-256color
+" set proper terminal colors
+set term=xterm-256color
+set termguicolors
 
 syntax on
 set encoding=utf-8
