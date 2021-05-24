@@ -8,4 +8,6 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
-PROMPT="%K{green}%F{black}%~%f%k %# "
+RPROMPT='%F{#504945}%n@%m%f %F{#7c6f64}%~%f'
+PROMPT='%F{green}> %f'
+
