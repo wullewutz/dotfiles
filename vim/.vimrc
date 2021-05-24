@@ -152,7 +152,6 @@ nnoremap <C-k> :cprev<cr>
 nnoremap <Leader>/ :Grep<space>
 nnoremap <Leader>* :Grep <cword> <cr>:copen<cr>
 nnoremap <Leader>b :ls<cr>:b<space>
-" nnoremap <Leader>f :Files<cr>
 nnoremap <Leader>f :find<space>
 nnoremap <Leader>ö :YcmCompleter GoTo<cr>
 nnoremap <Leader>öö :YcmCompleter GoToReferences<cr>
