@@ -91,8 +91,8 @@ set hlsearch
 set incsearch
 
 " Visualize insert mode
-:autocmd InsertEnter * set cul
-:autocmd InsertLeave * set nocul
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
 
 " Change cursor shape in different modes
 let &t_EI = "\033[2 q" " Normal mode: full rectangle
