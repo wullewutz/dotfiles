@@ -123,8 +123,11 @@ call plug#begin()
   Plug 'vimwiki/vimwiki'
 call plug#end()
 
+" use gruvbox colorscheme with transparent bg
 autocmd VimEnter * colorscheme gruvbox
 set background=dark
+autocmd VimEnter * hi Normal guibg=NONE ctermbg=NONE
+autocmd VimEnter * hi EndOfBuffer guibg=NONE ctermbg=NONE
 
 let g:ycm_language_server =
   \ [
