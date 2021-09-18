@@ -145,6 +145,10 @@ let g:rustfmt_autosave = 1
 " Avoid vimwiki mess up .md files during editing
 let g:vimwiki_global_ext = 0
 
+" Use Markdown for syntax for vimwiki
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
+
 " Remove unwanted trailing whitespaces in some file types.
 autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
