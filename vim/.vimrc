@@ -115,8 +115,6 @@ endif
 
 call plug#begin()
   Plug 'morhetz/gruvbox'
-  Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
-  Plug 'lotabout/skim.vim'
   Plug 'vim-airline/vim-airline'
   Plug 'ycm-core/YouCompleteMe'
   Plug 'rust-lang/rust.vim'
