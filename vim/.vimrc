@@ -1,8 +1,10 @@
-" Necessary for lots of cool vim things
-set nocompatible
+if !has("nvim")
+    " Necessary for lots of cool vim things
+    set nocompatible
+    " set proper terminal colors
+    set term=xterm-256color
+endif
 
-" set proper terminal colors
-set term=xterm-256color
 set termguicolors
 
 syntax on
@@ -40,10 +42,12 @@ set mouse=a
 " Fix empty Screen asking for 'ENTER or type command to continue'
 " (At least on Windows with WSL2)
 set shortmess=a
-"set cmdheight=3
 
 " Deactivate info buffer at startup
 set shortmess+=I
+"
+" Avoid showing extra messages when using completion
+set shortmess+=c
 
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
@@ -54,6 +58,13 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignorecase
 set wildignore+=*.swp,*.bak,*.o,*.s,*.d
+
+" Set completeopt to have a better completion experience
+" :help completeopt
+" menuone: popup even when there's only one match
+" noinsert: Do not insert text until a selection is made
+" noselect: Do not select, force user to select one from the menu
+set completeopt=menuone,noinsert,noselect
 
 " Split new windows below or right of the current one
 set splitbelow
@@ -116,26 +127,16 @@ endif
 call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'vim-airline/vim-airline'
-  Plug 'ycm-core/YouCompleteMe'
   Plug 'rust-lang/rust.vim'
   Plug 'vimwiki/vimwiki'
+if has("nvim")
+  Plug 'neovim/nvim-lspconfig'
+endif
 call plug#end()
 
 " use gruvbox colorscheme with transparent bg
 autocmd VimEnter * colorscheme gruvbox
 set background=dark
-autocmd VimEnter * hi Normal guibg=NONE ctermbg=NONE
-autocmd VimEnter * hi EndOfBuffer guibg=NONE ctermbg=NONE
-
-let g:ycm_language_server =
-  \ [
-  \   {
-  \     'name': 'rust',
-  \     'cmdline': ['rust-analyzer'],
-  \     'filetypes': ['rust'],
-  \     'project_root_files': ['Cargo.toml']
-  \   }
-  \ ]
 
 " Auto rust fmt on save
 let g:rustfmt_autosave = 1
@@ -148,7 +149,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Remove unwanted trailing whitespaces in some file types.
-autocmd FileType c,cpp,h,hpp,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,h,hpp,rs,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap ö <C-]>
@@ -159,5 +160,13 @@ nnoremap <Leader>/ :Grep<space>
 nnoremap <Leader>* :Grep <cword> <cr>:copen<cr>
 nnoremap <Leader>b :ls<cr>:b<space>
 nnoremap <Leader>f :find<space>
-nnoremap <Leader>ö :YcmCompleter GoTo<cr>
-nnoremap <Leader>öö :YcmCompleter GoToReferences<cr>
+
+if has("nvim")
+    lua require('lspconfig').rust_analyzer.setup({})
+    lua vim.api.nvim_set_keymap('n', '<Leader> ', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
+    lua vim.api.nvim_set_keymap('n', '<Leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
+    lua vim.api.nvim_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true})
+    lua vim.api.nvim_set_keymap('n', '<Leader>R', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
+    lua vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    lua vim.api.nvim_set_option('formatexpr', 'v:lua.vim.lsp.formatexpr()')
+endif
