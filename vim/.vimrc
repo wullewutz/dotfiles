@@ -1,4 +1,6 @@
-if !has("nvim")
+if has("nvim")
+    set inccommand=split
+else
     " Necessary for lots of cool vim things
     set nocompatible
     " set proper terminal colors
