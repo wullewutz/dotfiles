@@ -23,3 +23,4 @@ PROMPT='%F{#7c6f64}%~%f%F{green}${vcs_info_msg_0_}%f
 %F{green}> %f'
 
 alias jo=joshuto
+alias nv=nvim
