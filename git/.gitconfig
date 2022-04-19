@@ -3,6 +3,7 @@
 	email = wullewutz@users.noreply.github.com
 [diff]
 	guitool = meld
+	tool = vimdiff
 [merge]
 	tool = kdiff3
 [core]
