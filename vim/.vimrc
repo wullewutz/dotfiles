@@ -130,10 +130,10 @@ call plug#begin()
   Plug 'morhetz/gruvbox'
   Plug 'vim-airline/vim-airline'
   Plug 'rust-lang/rust.vim'
-  Plug 'vimwiki/vimwiki'
 if has("nvim")
   Plug 'neovim/nvim-lspconfig'
 endif
+  Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " use gruvbox colorscheme with transparent bg
