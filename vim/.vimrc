@@ -103,6 +103,9 @@ set hlsearch
 " Enable incremental search
 set incsearch
 
+" Higlight current cursor line
+set cursorline
+
 " Visualize insert mode
 autocmd InsertEnter * set cul
 autocmd InsertLeave * set nocul
