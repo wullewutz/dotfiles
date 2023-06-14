@@ -106,10 +106,6 @@ set incsearch
 " Higlight current cursor line
 set cursorline
 
-" Visualize insert mode
-autocmd InsertEnter * set cul
-autocmd InsertLeave * set nocul
-
 " Change cursor shape in different modes
 let &t_EI = "\033[2 q" " Normal mode: full rectangle
 let &t_SI = "\033[5 q" " Insert mode: |
