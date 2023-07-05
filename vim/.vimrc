@@ -150,7 +150,7 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Remove unwanted trailing whitespaces in some file types.
-autocmd FileType c,cpp,h,hpp,rs,py,md,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
+autocmd FileType c,cpp,rust,python,markdown,vimwiki autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Custom mapppings
 nnoremap ö <C-]>
