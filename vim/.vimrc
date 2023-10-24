@@ -174,11 +174,5 @@ nnoremap <Leader>b :ls<cr>:b<space>
 nnoremap <Leader>f :find<space>
 
 if has("nvim")
-    lua require('lspconfig').rust_analyzer.setup({})
-    lua vim.api.nvim_set_keymap('n', '<Leader> ', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
-    lua vim.api.nvim_set_keymap('n', '<Leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
-    lua vim.api.nvim_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.references()<CR>', {noremap = true})
-    lua vim.api.nvim_set_keymap('n', '<Leader>R', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap = true})
-    lua vim.api.nvim_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-    lua vim.api.nvim_set_option('formatexpr', 'v:lua.vim.lsp.formatexpr()')
+    lua require('lsp')
 endif
