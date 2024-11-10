@@ -26,3 +26,7 @@ foreground = "#ebdbb2"
 decorations = "none"
 opacity = 0.9
 blur = true
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
