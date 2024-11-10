@@ -21,7 +21,8 @@ set $menu wmenu-run
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/pics/wallpaper/cuivienen.png fill
+
 #
 # Example configuration:
 #
@@ -225,9 +226,9 @@ bar {
 
     colors {
         statusline #00ff00
-        background #003300
-        focused_workspace  #005500 #003300 #00ff00
-        inactive_workspace #005500 #003300 #000000
+        background #00000000
+        focused_workspace  #005500 #00660070 #00ff00
+        inactive_workspace #005500 #00330070 #666666
     }
 }
 
