@@ -57,6 +57,10 @@ output * bg ~/pics/wallpaper/cuivienen.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+input type:touchpad {
+    tap enabled
+}
+
 input * {
     xkb_layout "de"
 }
@@ -217,20 +221,22 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+#bar {
+#    position top
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#
+#    colors {
+#        statusline #00ff00
+#        background #00000000
+#        focused_workspace  #005500 #00660070 #00ff00
+#        inactive_workspace #005500 #00330070 #666666
+#    }
+#}
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-
-    colors {
-        statusline #00ff00
-        background #00000000
-        focused_workspace  #005500 #00660070 #00ff00
-        inactive_workspace #005500 #00330070 #666666
-    }
-}
+bar swaybar_command waybar
 
 default_border pixel 3
 default_floating_border normal
@@ -241,5 +247,7 @@ smart_gaps on
 smart_borders on
 client.focused #003300 #008800 #000000
 client.unfocused #000000 #000000 #00ff00
+
+font HackNerdFont 11
 
 include /etc/sway/config.d/*
