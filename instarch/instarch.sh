@@ -40,9 +40,18 @@ echo "Formatting the partitions..."
 mkfs.fat -F32 "${DISK}${PART_SUFFIX}1"
 mkfs.ext4 "${DISK}${PART_SUFFIX}2"
 
-# Mount the partitions
-echo "Mounting the partitions..."
-mount "${DISK}${PART_SUFFIX}2" /mnt
+# Setup LUKS encryption on the second partition
+echo "Setting up LUKS encryption..."
+cryptsetup luksFormat --type luks2 "${DISK}${PART_SUFFIX}2"
+cryptsetup open "${DISK}${PART_SUFFIX}2" cryptroot
+
+# Format and mount the encrypted partition
+echo "Formatting the encrypted partition..."
+mkfs.ext4 /dev/mapper/cryptroot
+mount /dev/mapper/cryptroot /mnt
+
+# Mount the EFI partition
+echo "Mounting the EFI partition..."
 mkdir -p /mnt/boot
 mount "${DISK}${PART_SUFFIX}1" /mnt/boot
 
