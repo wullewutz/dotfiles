@@ -105,5 +105,5 @@ EOF
 
 # Unmount and finish
 echo "Unmounting and finishing..."
-umount -R /mnt
+umount -l /mnt
 echo "Base installation complete. Reboot your system."
