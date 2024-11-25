@@ -7,40 +7,48 @@ set -e
 TIMEZONE="Europe/Berlin"
 LOCALE="en_US.UTF-8"
 KEYMAP="de-latin1"
-DISK="/dev/sda"  # Change this to your actual disk
 
 # Prompt user for passwords
 echo "Username"
 read USER
 echo "Password for '${USER}':"
 read -s USER_PASSWORD
-echo "Enter swapfile size like '33G':"
+echo "Enter swapfile size e.g. '33G':"
 read SWAP_SIZE
 echo "Host name"
 read HOSTNAME
-echo "Disk to use for installation like '/dev/sda'"
+echo "Disk e.g. '/dev/sda' or '/dev/nvme0n1'"
 read DISK
+
+# Determine partition suffix based on disk type
+if [[ "$DISK" =~ nvme ]]; then
+  # nvme disk name partitions /dev/nvme0n1p1
+  PART_SUFFIX="p"
+else
+  # ssd disk name partitions /dev/sda1
+  PART_SUFFIX=""
+fi
 
 # Partition the disk
 echo "Partitioning the disk..."
 parted -s "$DISK" mklabel gpt \
-    mkpart primary fat32 1MiB 300MiB set 1 esp on \
-    mkpart primary ext4 300MiB 100%
+    mkpart primary fat32 1MiB 1GiB set 1 esp on \
+    mkpart primary ext4 1GiB 100%
 
 # Format the partitions
 echo "Formatting the partitions..."
-mkfs.fat -F32 "${DISK}1"
-mkfs.ext4 "${DISK}2"
+mkfs.fat -F32 "${DISK}${PART_SUFFIX}1"
+mkfs.ext4 "${DISK}${PART_SUFFIX}2"
 
 # Mount the partitions
 echo "Mounting the partitions..."
-mount "${DISK}2" /mnt
+mount "${DISK}${PART_SUFFIX}2" /mnt
 mkdir -p /mnt/boot
-mount "${DISK}1" /mnt/boot
+mount "${DISK}${PART_SUFFIX}1" /mnt/boot
 
 # Install base system
 echo "Installing base system..."
-pacstrap /mnt base linux linux-firmware neovim git stow
+pacstrap /mnt base linux linux-firmware neovim git stow networkmanager
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
