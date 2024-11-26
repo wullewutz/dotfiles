@@ -55,6 +55,9 @@ echo "Mounting the EFI partition..."
 mkdir -p /mnt/boot
 mount "${DISK}${PART_SUFFIX}1" /mnt/boot
 
+# Get UUID of the encrypted partition
+UUID=$(blkid -s UUID -o value "${DISK}${PART_SUFFIX}2")
+
 # Install base system
 echo "Installing base system..."
 pacstrap /mnt base linux linux-firmware neovim git stow networkmanager
@@ -110,7 +113,6 @@ pacman --noconfirm -S grub efibootmgr cryptsetup
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 
 # Add kernel parameters for LUKS
-UUID=$(blkid -s UUID -o value "${DISK}${PART_SUFFIX}2")  # Get UUID of the encrypted partition
 echo "GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${UUID}:cryptroot root=/dev/mapper/cryptroot\"" >> /etc/default/grub
 
 # Install GRUB to the EFI directory
