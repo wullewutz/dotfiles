@@ -104,9 +104,14 @@ echo "192.168.178.42    nas" >> /etc/hosts
 echo "nas:/wullewutz    /mnt/nas    nfs rsize=8192,wsize=8192,users,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,hard,intr,noatime	0	0" >> /etc/fstab
 
 # Install and configure bootloader
-pacman --noconfirm -S grub efibootmgr
+pacman --noconfirm -S grub efibootmgr cryptsetup
+echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# Add LUKS hook to mkinitcpio
+sed -i 's/^HOOKS=.*/HOOKS=(base udev autodetect modconf block encrypt filesystems keyboard fsck)/' /etc/mkinitcpio.conf
+mkinitcpio -P
 
 # Enable essential services
 systemctl enable NetworkManager
@@ -115,4 +120,5 @@ EOF
 # Unmount and finish
 echo "Unmounting and finishing..."
 umount -l /mnt
+cryptsetup close cryptroot
 echo "Base installation complete. Reboot your system."
