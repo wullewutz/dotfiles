@@ -103,10 +103,20 @@ swapon /swapfile
 echo "192.168.178.42    nas" >> /etc/hosts
 echo "nas:/wullewutz    /mnt/nas    nfs rsize=8192,wsize=8192,users,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,hard,intr,noatime	0	0" >> /etc/fstab
 
-# Install and configure bootloader
+# GRUB
 pacman --noconfirm -S grub efibootmgr cryptsetup
+
+# Enable GRUB support for encrypted disks
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
+
+# Add kernel parameters for LUKS
+UUID=$(blkid -s UUID -o value "${DISK}${PART_SUFFIX}2")  # Get UUID of the encrypted partition
+echo "GRUB_CMDLINE_LINUX=\"cryptdevice=UUID=${UUID}:cryptroot root=/dev/mapper/cryptroot\"" >> /etc/default/grub
+
+# Install GRUB to the EFI directory
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+
+# Install GRUB to the EFI directory
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # Add LUKS hook to mkinitcpio
@@ -119,6 +129,8 @@ EOF
 
 # Unmount and finish
 echo "Unmounting and finishing..."
-umount -l /mnt
-cryptsetup close cryptroot
-echo "Base installation complete. Reboot your system."
+swapoff /mnt/swapfile
+umount -R /mnt
+cryptsetup close cryptroot || echo "Warning: Unable to close cryptroot. Ensure it is unmounted and try manually."
+echo "Installation complete. Reboot your system."
+
