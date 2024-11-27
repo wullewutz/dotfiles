@@ -25,5 +25,5 @@ PROMPT='%F{#7c6f64}%~%f%F{green}${vcs_info_msg_0_}%f
 TERMINAL=alacritty
 alias jo=joshuto
 alias nv=nvim
-alias ls=exa\ --git
+alias ls=eza\ --git
 alias x=xdg-open
