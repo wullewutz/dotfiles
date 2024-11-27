@@ -91,7 +91,7 @@ echo "127.0.1.1   ${HOSTNAME}.localdomain ${HOSTNAME}" >> /etc/hosts
 passwd -l root
 
 # Install essential tools
-pacman --noconfirm -S neovim git stow networkmanager sudo less ripgrep
+pacman --noconfirm -S neovim git stow networkmanager sudo less ripgrep nfs-utils
 
 # Create a user and put it into wheel group
 useradd -m -G wheel ${USER}

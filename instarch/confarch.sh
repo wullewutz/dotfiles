@@ -9,6 +9,9 @@ cd ..
 
 sudo pacman --noconfirm -Syu
 
+# essential tools without dotfiles
+sudo pacman ${PACMAN_ARGS} -S eza wget firefox
+
 # GNU stow (dotfiles manager)
 sudo pacman ${PACMAN_ARGS} -S stow
 
@@ -36,8 +39,7 @@ sudo pacman ${PACMAN_ARGS} -S zellij
 stow zellij
 
 # sway
-sudo pacman ${PACMAN_ARGS} -S sway waybar ttf-hack-nerd
+wget -O ~/wallpaper.png https://images4.alphacoders.com/134/1344100.png
+sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd wmenu
 stow sway
 
-# misc cli tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza ttf-hack-nerd
