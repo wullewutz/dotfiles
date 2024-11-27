@@ -60,7 +60,7 @@ UUID=$(blkid -s UUID -o value "${DISK}${PART_SUFFIX}2")
 
 # Install base system
 echo "Installing base system..."
-pacstrap /mnt base linux linux-firmware neovim git stow networkmanager
+pacstrap /mnt base linux linux-firmware 
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -89,6 +89,9 @@ echo "127.0.1.1   ${HOSTNAME}.localdomain ${HOSTNAME}" >> /etc/hosts
 
 # Disable root user
 passwd -l root
+
+# Install essential tools
+pacman --noconfirm -S neovim git stow networkmanager sudo less ripgrep
 
 # Create a user and put it into wheel group
 useradd -m -G wheel ${USER}
