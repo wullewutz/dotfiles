@@ -10,7 +10,7 @@ cd ..
 sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza wget firefox udisks2 udiskie
+sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie
 
 # GNU stow (dotfiles manager)
 sudo pacman ${PACMAN_ARGS} -S stow
@@ -29,10 +29,13 @@ chsh -s /usr/bin/zsh
 sudo pacman ${PACMAN_ARGS} -S neovim
 stow vim
 stow nvim
+echo "export EDITOR=/usr/bin/nvim" >> $HOME/.profile
 
 # alacritty
 sudo pacman ${PACMAN_ARGS} -S alacritty
 stow alacritty
+echo "export TERMINAL=/usr/bin/alacritty" >> $HOME/.profile
+echo "export TERMINAL_CMD=\"alacritty -e\"" >> $HOME/.profile
 
 # zellij
 sudo pacman ${PACMAN_ARGS} -S zellij
@@ -42,4 +45,11 @@ stow zellij
 wget -O ~/wallpaper.png https://images4.alphacoders.com/134/1344100.png
 sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd wmenu libappindicator-gtk3
 stow sway
+
+# firefox
+sudo pacman ${PACMAN_ARGS} -S firefox
+echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
+
+# zathura pdf viewer
+sudo pacman ${PACMAN_ARGS} -S zathura zathura-pdf-mupdf zathura-cb tesseract-data-deu
 
