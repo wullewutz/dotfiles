@@ -41,9 +41,19 @@ echo "export TERMINAL_CMD=\"alacritty -e\"" >> $HOME/.profile
 sudo pacman ${PACMAN_ARGS} -S zellij
 stow zellij
 
+# pipewire sound
+sudo pacman ${PACMAN_ARGS} -S pipewire pipewire-audio pipewire-pulse \
+                              pipewire-alsa pipewire-jack wireplumber
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
+# bluetooth
+sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
+sudo systemctl enable --now bluetooth.service
+
 # sway
 wget -O ~/wallpaper.png https://images4.alphacoders.com/134/1344100.png
-sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd wmenu libappindicator-gtk3
+sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd \
+                              wmenu libappindicator-gtk3
 stow sway
 
 # firefox
