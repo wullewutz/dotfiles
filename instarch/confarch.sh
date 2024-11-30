@@ -16,7 +16,7 @@ sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie
 sudo pacman ${PACMAN_ARGS} -S stow
 
 # git
-sudo pacman ${PACMAN_ARGS} -S git
+sudo pacman ${PACMAN_ARGS} -S git gitui
 git pull
 stow git
 
@@ -53,7 +53,7 @@ sudo systemctl enable --now bluetooth.service
 # sway
 wget -O ~/wallpaper.png https://images4.alphacoders.com/134/1344100.png
 sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd \
-                              wmenu libappindicator-gtk3
+                              wmenu libappindicator-gtk3 grim
 stow sway
 
 # firefox
