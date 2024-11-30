@@ -105,10 +105,6 @@ mkswap -U clear --size ${SWAP_SIZE} --file /swapfile
 echo "/swapfile none swap defaults 0 0" >> /etc/fstab
 swapon /swapfile
 
-# Add NAS settings
-echo "192.168.178.42    nas" >> /etc/hosts
-echo "nas:/wullewutz    /mnt/nas    nfs rsize=8192,wsize=8192,users,noauto,x-systemd.automount,x-systemd.device-timeout=10,timeo=14,hard,intr,noatime	0	0" >> /etc/fstab
-
 # GRUB
 pacman --noconfirm -S grub efibootmgr cryptsetup
 
