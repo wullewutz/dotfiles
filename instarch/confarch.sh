@@ -4,13 +4,14 @@ PACMAN_ARGS="--noconfirm --needed"
 
 # Abort on errors
 set -e
+rm $HOME/.profile
 
 cd ..
 
 sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie
+sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie base-devel man-db man
 
 # GNU stow (dotfiles manager)
 sudo pacman ${PACMAN_ARGS} -S stow
@@ -30,6 +31,7 @@ sudo pacman ${PACMAN_ARGS} -S neovim
 stow vim
 stow nvim
 echo "export EDITOR=/usr/bin/nvim" >> $HOME/.profile
+echo "export MANPAGER='nvim +Man!'" >> $HOME/.profile
 
 # alacritty
 sudo pacman ${PACMAN_ARGS} -S alacritty
@@ -51,8 +53,8 @@ sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
 # sway
-wget -O ~/wallpaper.png https://images4.alphacoders.com/134/1344100.png
-sudo pacman ${PACMAN_ARGS} -S sway swaybg waybar ttf-hack-nerd \
+wget -O $HOME/.config/sway/wallpaper.png https://images4.alphacoders.com/134/1344100.png
+sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg wl-clipboard waybar ttf-hack-nerd \
                               wmenu libappindicator-gtk3 grim
 stow sway
 
@@ -63,3 +65,9 @@ echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 # zathura pdf viewer
 sudo pacman ${PACMAN_ARGS} -S zathura zathura-pdf-mupdf zathura-cb tesseract-data-deu
 
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# MIME resource opener
+sudo pacman ${PACMAN_ARGS} -S handlr-regex
+handlr set 'image/*' swayimg.desktop
