@@ -6,12 +6,20 @@ PACMAN_ARGS="--noconfirm --needed"
 set -e
 rm $HOME/.profile
 
+# XDG base directory specification
+echo "export XDG_CONFIG_HOME=$HOME/.config" >> $HOME/.profile
+echo "export XDG_CACHE_HOME=$HOME/.cache" >> $HOME/.profile
+echo "export XDG_DATA_HOME=$HOME/.local/share" >> $HOME/.profile
+
 cd ..
 
 sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie base-devel man-db man
+sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie base-devel man-db man handlr-regex
+
+# rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 # GNU stow (dotfiles manager)
 sudo pacman ${PACMAN_ARGS} -S stow
@@ -32,6 +40,7 @@ stow vim
 stow nvim
 echo "export EDITOR=/usr/bin/nvim" >> $HOME/.profile
 echo "export MANPAGER='nvim +Man!'" >> $HOME/.profile
+handlr set 'text/*' nvim.desktop
 
 # alacritty
 sudo pacman ${PACMAN_ARGS} -S alacritty
@@ -53,10 +62,14 @@ sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
 # sway
-wget -O $HOME/.config/sway/wallpaper.png https://images4.alphacoders.com/134/1344100.png
-sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg wl-clipboard waybar ttf-hack-nerd \
-                              wmenu libappindicator-gtk3 grim
+wget -O $HOME/.config/sway/wallpaper.png \
+    https://images4.alphacoders.com/134/1344100.png
+sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
+                              wl-clipboard waybar ttf-hack-nerd brightnessctl \
+                              libappindicator-gtk3 grim
 stow sway
+cargo install yofi # until yofi is available via arch repos
+handlr set 'image/*' swayimg.desktop
 
 # firefox
 sudo pacman ${PACMAN_ARGS} -S firefox
@@ -64,10 +77,4 @@ echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 
 # zathura pdf viewer
 sudo pacman ${PACMAN_ARGS} -S zathura zathura-pdf-mupdf zathura-cb tesseract-data-deu
-
-# rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# MIME resource opener
-sudo pacman ${PACMAN_ARGS} -S handlr-regex
-handlr set 'image/*' swayimg.desktop
+handlr set 'application/pdf' zathura.desktop
