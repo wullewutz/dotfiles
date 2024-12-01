@@ -66,7 +66,7 @@ wget -O $HOME/.config/sway/wallpaper.png \
     https://images4.alphacoders.com/134/1344100.png
 sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
                               wl-clipboard waybar ttf-hack-nerd brightnessctl \
-                              libappindicator-gtk3 grim
+                              libappindicator-gtk3 grim otf-font-awesome
 stow sway
 cargo install yofi # until yofi is available via arch repos
 handlr set 'image/*' swayimg.desktop
