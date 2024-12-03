@@ -71,6 +71,11 @@ input type:touchpad {
     tap enabled
 }
 
+input type:pointer {
+    accel_profile "flat" # no mouse acceleration
+    pointer_accel -0.2 # mouse acceleration from -1 to +1
+}
+
 input * {
     xkb_layout "de"
 }
