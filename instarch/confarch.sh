@@ -13,10 +13,11 @@ echo "export XDG_DATA_HOME=$HOME/.local/share" >> $HOME/.profile
 
 cd ..
 
+# update initial system
 sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza wget udisks2 udiskie base-devel man-db man handlr-regex
+sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget udisks2 udiskie base-devel man-db man handlr-regex
 
 # rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
