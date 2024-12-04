@@ -17,7 +17,8 @@ cd ..
 sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
-sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget udisks2 udiskie base-devel man-db man handlr-regex
+sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
+                              base-devel man-db man handlr-regex
 
 # rust
 # -s -- -y at the end to make it non-interactive
@@ -75,6 +76,10 @@ stow sway
 stow waybar
 cargo install yofi # until yofi is available via arch repos
 handlr set 'image/*' swayimg.desktop
+
+# fastfetch
+sudo pacman ${PACMAN_ARGS} -S fastfetch
+stow fastfetch
 
 # firefox
 sudo pacman ${PACMAN_ARGS} -S firefox
