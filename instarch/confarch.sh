@@ -77,7 +77,7 @@ handlr set 'image/*' swayimg.desktop
 
 # wallpaper
 stow wallpaper
-ln -f -s $HOME/.config/wallpaper/HMRGL_green.png $HOME/.config/sway/wallpaper.png
+ln -f -s $HOME/.config/wallpaper/HMRGL_green_1920x1080.png $HOME/.config/sway/wallpaper.png
 
 # fastfetch
 sudo pacman ${PACMAN_ARGS} -S fastfetch
