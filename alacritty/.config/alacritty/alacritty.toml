@@ -24,7 +24,7 @@ foreground = "#ebdbb2"
 
 [window]
 decorations = "none"
-opacity = 0.9
+#opacity = 0.9
 blur = true
 
 [font.normal]
