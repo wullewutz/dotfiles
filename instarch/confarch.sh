@@ -91,6 +91,9 @@ echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 sudo pacman ${PACMAN_ARGS} -S zathura zathura-pdf-mupdf zathura-cb tesseract-data-deu
 handlr set 'application/pdf' zathura.desktop
 
+# signal (desktop version)
+sudo pacman ${PACMAN_ARGS} -S signal-desktop
+
 # lutris config for starcraft gaming like it's 1998
 sudo pacman ${PACMAN_ARGS} -S lutris wine-staging
 sudo pacman ${PACMAN_ARGS} -S lib32-mesa vulkan-intel \
