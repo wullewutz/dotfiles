@@ -1,21 +1,22 @@
 * {
-	font-size: 20px;
-	font-family: monospace;
+    font-size: 25px;
+    font-family: monospace;
+    font-weight: bold;
 }
 
 window#waybar {
-	background: #292b2e;
-	color: #008800;
+    background: #292b2e;
+    color: #008800;
 }
 
 #custom-right-arrow-dark,
 #custom-left-arrow-dark {
-	color: #1a1a1a;
+    color: #1a1a1a;
 }
 #custom-right-arrow-light,
 #custom-left-arrow-light {
-	color: #292b2e;
-	background: #1a1a1a;
+    color: #292b2e;
+    background: #1a1a1a;
 }
 
 #workspaces,
@@ -28,42 +29,42 @@ window#waybar {
 #battery,
 #disk,
 #tray {
-	background: #1a1a1a;
+    background: #1a1a1a;
 }
 
 #workspaces button {
-	padding: 0 2px;
-	color: #008800;
+    padding: 0 2px;
+    color: #008800;
 }
 #workspaces button.focused {
-	color: #1a1a1a;
+    color: #1a1a1a;
     background: #008800
 }
 #workspaces button:hover {
-	box-shadow: inherit;
-	text-shadow: inherit;
+    box-shadow: inherit;
+    text-shadow: inherit;
 }
 #workspaces button:hover {
-	background: #008800;
-	border: #008800;
+    background: #008800;
+    border: #008800;
     color: #1a1a1a;
-	padding: 0 3px;
+    padding: 0 3px;
 }
 
 #pulseaudio {
-	color: #268bd2;
+    color: #268bd2;
 }
 #memory {
-	color: #2aa198;
+    color: #2aa198;
 }
 #cpu {
-	color: #6c71c4;
+    color: #6c71c4;
 }
 #battery {
-	color: #859900;
+    color: #859900;
 }
 #disk {
-	color: #b58900;
+    color: #b58900;
 }
 
 #clock,
@@ -72,5 +73,5 @@ window#waybar {
 #cpu,
 #battery,
 #disk {
-	padding: 0 10px;
+    padding: 0 10px;
 }

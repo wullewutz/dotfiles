@@ -267,8 +267,8 @@ gaps inner 10
 smart_gaps on
 smart_borders on
 client.focused #003300 #008800 #000000
-client.unfocused #000000 #000000 #00ff00
+client.unfocused #000000 #000000 #008800
 
-font HackNerdFont 11
+font monospace bold 15
 
 include /etc/sway/config.d/*
