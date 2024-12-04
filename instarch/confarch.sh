@@ -18,7 +18,7 @@ sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
 sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
-                              base-devel man-db man handlr-regex
+                              base-devel man-db man handlr-regex dua-cli
 
 # rust
 # -s -- -y at the end to make it non-interactive
@@ -67,8 +67,6 @@ sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
 # sway
-wget -O $HOME/.config/sway/wallpaper.png \
-    https://images4.alphacoders.com/134/1344100.png
 sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
                               wl-clipboard waybar ttf-hack-nerd brightnessctl \
                               libappindicator-gtk3 grim otf-font-awesome
@@ -76,6 +74,10 @@ stow sway
 stow waybar
 cargo install yofi # until yofi is available via arch repos
 handlr set 'image/*' swayimg.desktop
+
+# wallpaper
+stow wallpaper
+ln -f -s $HOME/.config/wallpaper/HMRGL_green.png $HOME/.config/sway/wallpaper.png
 
 # fastfetch
 sudo pacman ${PACMAN_ARGS} -S fastfetch
