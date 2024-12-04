@@ -237,6 +237,8 @@ bindsym $mod+r mode "resize"
 
     exec --no-startup-id blueman-applet
     exec --no-startup-id udiskie --tray
+    exec --no-startup-id signal-desktop
+    exec --no-startup-id nm-applet
 
 #
 # Status Bar:
@@ -267,7 +269,7 @@ gaps inner 10
 smart_gaps on
 smart_borders on
 client.focused #003300 #008800 #000000
-client.unfocused #000000 #000000 #008800
+client.unfocused #000000 #282828 #008800
 
 font monospace bold 15
 

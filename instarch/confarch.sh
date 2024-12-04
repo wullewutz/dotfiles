@@ -66,6 +66,9 @@ systemctl --user enable --now pipewire pipewire-pulse wireplumber
 sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
 sudo systemctl enable --now bluetooth.service
 
+# network-manager-applet
+sudo pacman ${PACMAN_ARGS} -S network-manager-applet
+
 # sway
 sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
                               wl-clipboard waybar ttf-hack-nerd brightnessctl \
