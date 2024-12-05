@@ -127,16 +127,17 @@ endif
 
 call plug#begin()
   Plug 'morhetz/gruvbox'
-  Plug 'vim-airline/vim-airline'
   Plug 'rust-lang/rust.vim'
+  Plug 'vimwiki/vimwiki'
 if has("nvim")
   Plug 'neovim/nvim-lspconfig'
+  Plug 'nvim-lualine/lualine.nvim'
 endif
-  Plug 'vimwiki/vimwiki'
 call plug#end()
 
-" use gruvbox colorscheme with transparent bg
-autocmd VimEnter * colorscheme gruvbox
+" use gruvbox colorscheme
+"autocmd VimEnter * colorscheme gruvbox
+colorscheme gruvbox
 set background=dark
 
 " Auto rust fmt on save
@@ -175,4 +176,5 @@ nnoremap <Leader>f :find<space>
 
 if has("nvim")
     lua require('lsp')
+    lua require('statusline')
 endif
