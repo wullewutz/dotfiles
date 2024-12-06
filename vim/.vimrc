@@ -173,8 +173,14 @@ nnoremap <Leader>/ :Grep<space>
 nnoremap <Leader>* :Grep <cword> <cr>:copen<cr>
 nnoremap <Leader>b :ls<cr>:b<space>
 nnoremap <Leader>f :find<space>
+nnoremap <BS> <C-w>w
 
 if has("nvim")
     lua require('lsp')
     lua require('statusline')
+endif
+
+" Add machine specific local settings
+if filereadable(expand('~/.local_vimrc'))
+    source ~/.local_vimrc
 endif
