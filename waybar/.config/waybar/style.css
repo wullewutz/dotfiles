@@ -75,3 +75,14 @@ window#waybar {
 #disk {
     padding: 0 10px;
 }
+
+#tray * {
+    font-size:25px;
+    color: #008800;
+    background: #282828;
+}
+
+#tray menu menuitem:hover {
+    background-color: #008800;
+    color: #1a1a1a;
+}
