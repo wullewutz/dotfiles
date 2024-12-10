@@ -239,6 +239,7 @@ bindsym $mod+r mode "resize"
     exec --no-startup-id udiskie --tray
     exec --no-startup-id signal-desktop
     exec --no-startup-id nm-applet
+    exec --no-startup-id mako
 
 #
 # Status Bar:

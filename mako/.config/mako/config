@@ -1,0 +1,7 @@
+font=monospace bold 15
+text-color=#008800FF
+background-color=#282828FF
+border-color=#008800FF
+border-radius=10
+default-timeout=5000
+anchor=top-right

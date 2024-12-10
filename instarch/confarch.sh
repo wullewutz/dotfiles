@@ -72,9 +72,11 @@ sudo pacman ${PACMAN_ARGS} -S network-manager-applet
 # sway
 sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
                               wl-clipboard waybar ttf-hack-nerd brightnessctl \
-                              libappindicator-gtk3 grim otf-font-awesome
+                              libappindicator-gtk3 grim otf-font-awesome \
+                              mako
 stow sway
 stow waybar
+stow mako
 cargo install yofi # until yofi is available via arch repos
 handlr set 'image/*' swayimg.desktop
 
