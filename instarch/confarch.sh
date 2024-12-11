@@ -24,6 +24,8 @@ sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
 # -s -- -y at the end to make it non-interactive
 # (following https://stackoverflow.com/questions/57251508/run-rustups-curl-fetched-installer-script-non-interactively)
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+rustup component add rust-src
+rustup component add rust-analyzer
 
 # GNU stow (dotfiles manager)
 sudo pacman ${PACMAN_ARGS} -S stow
