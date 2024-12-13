@@ -21,7 +21,7 @@ require('lualine').setup {
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
+    lualine_c = {'filename', function() return trailingWhitespaces() end},
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
     lualine_z = {'location'}
@@ -39,3 +39,9 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+function trailingWhitespaces()
+    local space = vim.fn.search([[\s\+$]], 'nwc')
+    return space ~= 0 and " trailing:"..space or ""
+end
+
