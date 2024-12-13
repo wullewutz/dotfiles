@@ -11,6 +11,10 @@ echo "export XDG_CONFIG_HOME=$HOME/.config" >> $HOME/.profile
 echo "export XDG_CACHE_HOME=$HOME/.cache" >> $HOME/.profile
 echo "export XDG_DATA_HOME=$HOME/.local/share" >> $HOME/.profile
 
+# setup user bin directory
+mkdir -p $HOME/.local/bin
+echo "export PATH=\$HOME/.local/bin:\$PATH" >> $HOME/.profile
+
 cd ..
 
 # update initial system
@@ -18,7 +22,16 @@ sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
 sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
-                              base-devel man-db man handlr-regex dua-cli
+                              base-devel man-db man dua-cli
+
+# handlr-regex (xdg-open replacement for wayland)
+sudo pacman ${PACMAN_ARGS} -S handlr-regex
+# shadow xdg-open (as proposed here: https://github.com/Anomalocaridid/handlr-regex)
+cat << 'EOF' > $HOME/.local/bin/xdg-open
+#!/bin/sh
+handlr open $@
+EOF
+chmod +x $HOME/.local/bin/xdg-open
 
 # rust
 # -s -- -y at the end to make it non-interactive
@@ -49,15 +62,24 @@ echo "export EDITOR=/usr/bin/nvim" >> $HOME/.profile
 echo "export MANPAGER='nvim +Man!'" >> $HOME/.profile
 handlr set 'text/*' nvim.desktop
 
-# alacritty
+# alacritty terminal
 sudo pacman ${PACMAN_ARGS} -S alacritty
 stow alacritty
 echo "export TERMINAL=/usr/bin/alacritty" >> $HOME/.profile
 echo "export TERMINAL_CMD=\"alacritty -e\"" >> $HOME/.profile
 
-# zellij
+# zellij terminal multiplexer
 sudo pacman ${PACMAN_ARGS} -S zellij
 stow zellij
+
+#yazi file manager
+sudo pacman ${PACMAN_ARGS} -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf \
+                              zoxide imagemagick ueberzugpp
+#remove remains of previous installations
+rm -rf $HOME/.config/yazi/flavors
+rm -f $HOME/.config/yazi/package.toml
+ya pack -a bennyyip/gruvbox-dark
+stow yazi
 
 # pipewire sound
 sudo pacman ${PACMAN_ARGS} -S pipewire pipewire-audio pipewire-pulse \
@@ -71,7 +93,7 @@ sudo systemctl enable --now bluetooth.service
 # network-manager-applet
 sudo pacman ${PACMAN_ARGS} -S network-manager-applet
 
-# sway
+# sway window mananger
 sudo pacman ${PACMAN_ARGS} -S sway swaybg swayimg swaylock swayidle \
                               wl-clipboard waybar ttf-hack-nerd brightnessctl \
                               libappindicator-gtk3 grim otf-font-awesome \
@@ -94,9 +116,9 @@ stow fastfetch
 sudo pacman ${PACMAN_ARGS} -S firefox
 echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 
-# zathura pdf viewer
-sudo pacman ${PACMAN_ARGS} -S zathura zathura-pdf-mupdf zathura-cb tesseract-data-deu
-handlr set 'application/pdf' zathura.desktop
+# mupdf pdf viewer
+sudo pacman ${PACMAN_ARGS} -S mupdf
+handlr set 'application/pdf' mupdf.desktop
 
 # signal (desktop version)
 sudo pacman ${PACMAN_ARGS} -S signal-desktop
