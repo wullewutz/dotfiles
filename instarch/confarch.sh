@@ -11,9 +11,8 @@ echo "export XDG_CONFIG_HOME=$HOME/.config" >> $HOME/.profile
 echo "export XDG_CACHE_HOME=$HOME/.cache" >> $HOME/.profile
 echo "export XDG_DATA_HOME=$HOME/.local/share" >> $HOME/.profile
 
-# setup user bin directory
+# create user bin directory
 mkdir -p $HOME/.local/bin
-echo "export PATH=\$HOME/.local/bin:\$PATH" >> $HOME/.profile
 
 cd ..
 
