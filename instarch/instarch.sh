@@ -60,7 +60,7 @@ UUID=$(blkid -s UUID -o value "${DISK}${PART_SUFFIX}2")
 
 # Install base system
 echo "Installing base system..."
-pacstrap /mnt base linux linux-firmware 
+pacstrap /mnt base linux linux-firmware
 
 # Generate fstab
 genfstab -U /mnt >> /mnt/etc/fstab
@@ -128,7 +128,7 @@ mkinitcpio -P
 systemctl enable NetworkManager
 
 # enable multilib
-echo "[multilib]" >> /etc/pacman.conf 
+echo "[multilib]" >> /etc/pacman.conf
 echo "Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
 EOF

@@ -21,7 +21,7 @@ sudo pacman --noconfirm -Syu
 
 # essential tools without dotfiles
 sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
-                              base-devel man-db man dua-cli
+                              base-devel man-db man dua-cli usbutils
 
 # handlr-regex (xdg-open replacement for wayland)
 sudo pacman ${PACMAN_ARGS} -S handlr-regex
@@ -111,25 +111,3 @@ ln -f -s $HOME/.config/wallpaper/HMRGL_green_1920x1080.png $HOME/.config/sway/wa
 sudo pacman ${PACMAN_ARGS} -S fastfetch
 stow fastfetch
 
-# firefox
-sudo pacman ${PACMAN_ARGS} -S firefox
-echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
-
-# mupdf pdf viewer
-sudo pacman ${PACMAN_ARGS} -S mupdf
-handlr set 'application/pdf' mupdf.desktop
-
-# signal (desktop version)
-sudo pacman ${PACMAN_ARGS} -S signal-desktop
-
-# lutris config for starcraft gaming like it's 1998
-sudo pacman ${PACMAN_ARGS} -S lutris wine-staging
-sudo pacman ${PACMAN_ARGS} -S lib32-mesa vulkan-intel \
-                              lib32-vulkan-intel vulkan-icd-loader \
-                              lib32-vulkan-icd-loader
-sudo pacman ${PACMAN_ARGS} -S --asdeps giflib lib32-giflib gnutls lib32-gnutls \
-    v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins \
-    lib32-alsa-plugins alsa-lib lib32-alsa-lib sqlite lib32-sqlite \
-    libxcomposite lib32-libxcomposite ocl-icd lib32-ocl-icd libva lib32-libva \
-    gtk3 lib32-gtk3 gst-plugins-base-libs lib32-gst-plugins-base-libs \
-    vulkan-icd-loader lib32-vulkan-icd-loader sdl2 lib32-sdl2
