@@ -27,3 +27,8 @@ alias nv=nvim
 alias ls=eza\ --git
 alias x=xdg-open
 alias y=yazi
+eval "$(zoxide init zsh)"
+
+if [[ -f ~/.profile ]]; then
+  source ~/.profile
+fi

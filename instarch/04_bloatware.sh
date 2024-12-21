@@ -28,6 +28,13 @@ sudo systemctl enable --now cups.service
 paru -S brother-hll2310d
 echo "Open http://localhost:631 and add printer under Administration"
 
+# syncthing
+sudo pacman ${PACMAN_ARGS} -S syncthing
+sudo systemctl enable --now syncthing@${USER}.service
+
+# keepassxc
+sudo pacman ${PACMAN_ARGS} -S keepassxc
+
 # lutris config for starcraft gaming like it's 1998
 sudo pacman ${PACMAN_ARGS} -S lutris wine-staging
 sudo pacman ${PACMAN_ARGS} -S lib32-mesa vulkan-intel \
