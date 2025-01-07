@@ -33,9 +33,8 @@ EOF
 chmod +x $HOME/.local/bin/xdg-open
 
 # rust
-# -s -- -y at the end to make it non-interactive
-# (following https://stackoverflow.com/questions/57251508/run-rustups-curl-fetched-installer-script-non-interactively)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+sudo pacman ${PACMAN_ARGS} -S rustup
+rustup default stable
 rustup component add rust-src
 rustup component add rust-analyzer
 
