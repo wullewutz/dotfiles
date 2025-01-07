@@ -15,6 +15,10 @@ rm -rf paru
 sudo pacman ${PACMAN_ARGS} -S firefox
 echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 
+# thunderbird
+sudo pacman ${PACMAN_ARGS} -S thunderbird thunderbird-i18n-de \
+                              thunderbird-i18n-en-us
+
 # mupdf pdf viewer
 sudo pacman ${PACMAN_ARGS} -S mupdf
 handlr set 'application/pdf' mupdf.desktop
