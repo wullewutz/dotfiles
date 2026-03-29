@@ -5,8 +5,8 @@ My personal dotfiles
 
 ```
 cd
-git clone https://github.com/wullewutz/dotfiles.git
-cd dotfiles/
+git clone https://github.com/wullewutz/dotfiles.git dot
+cd dot/
 stow vim
 stow git
 ...
