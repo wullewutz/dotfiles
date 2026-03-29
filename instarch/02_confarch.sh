@@ -23,7 +23,7 @@ sudo pacman --noconfirm -Syu
 sudo pacman ${PACMAN_ARGS} -S eza fd ripgrep wget zenith udisks2 udiskie \
                               base-devel man-db man dua-cli usbutils
 
-# handlr-regex (xdg-open replacement for wayland)
+# handlr-regex (xdg-open replacement / mime support for wayland)
 sudo pacman ${PACMAN_ARGS} -S handlr-regex
 # shadow xdg-open (as proposed here: https://github.com/Anomalocaridid/handlr-regex)
 cat << 'EOF' > $HOME/.local/bin/xdg-open

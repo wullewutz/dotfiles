@@ -19,6 +19,10 @@ echo "export BROWSER=/usr/bin/firefox" >> $HOME/.profile
 sudo pacman ${PACMAN_ARGS} -S thunderbird thunderbird-i18n-de \
                               thunderbird-i18n-en-us
 
+# libre office
+sudo pacman ${PACMAN_ARGS} -S libreoffice-fresh libreoffice-fresh-de
+handlr set .odt libreoffice.desktop
+
 # mupdf pdf viewer
 sudo pacman ${PACMAN_ARGS} -S mupdf
 handlr set 'application/pdf' mupdf.desktop
@@ -41,7 +45,7 @@ sudo pacman ${PACMAN_ARGS} -S keepassxc
 
 # lutris config for starcraft gaming like it's 1998
 sudo pacman ${PACMAN_ARGS} -S lutris wine-staging
-sudo pacman ${PACMAN_ARGS} -S lib32-mesa vulkan-intel \
+sudo pacman ${PACMAN_ARGS} -S lib32-mesa lib32-mesa-utils vulkan-intel \
                               lib32-vulkan-intel vulkan-icd-loader \
                               lib32-vulkan-icd-loader
 sudo pacman ${PACMAN_ARGS} -S --asdeps giflib lib32-giflib gnutls lib32-gnutls \
