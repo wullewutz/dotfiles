@@ -147,7 +147,7 @@ let g:rustfmt_autosave = 1
 let g:vimwiki_global_ext = 0
 
 " Use Markdown for syntax for vimwiki
-let g:vimwiki_list = [{'path': '~/vimwiki/',
+let g:vimwiki_list = [{'path': '~/wik/',
                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 " Remove unwanted trailing whitespaces in some file types.
