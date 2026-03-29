@@ -73,7 +73,7 @@ input type:touchpad {
 
 input type:pointer {
     accel_profile "flat" # no mouse acceleration
-    pointer_accel -0.2 # mouse acceleration from -1 to +1
+    pointer_accel -0.4 # mouse acceleration from -1 to +1
 }
 
 input * {
@@ -93,6 +93,7 @@ input * {
 
     # Kill focused window
     bindsym $mod+q kill
+    bindsym $mod+Shift+q kill -signal SIGKILL
 
     # Start your launcher
     bindsym $mod+d exec $menu
