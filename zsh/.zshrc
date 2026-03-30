@@ -15,8 +15,16 @@ autoload -Uz vcs_info
 precmd() {
     vcs_info
 }
-zstyle ':vcs_info:git*' formats '::%b %a %m%u%c '
-zstyle ':vcs_info:git*' check-for-changes true
+
+# check, whether we are in a WSL environment
+if [ -n "$WSL_DISTRO_NAME" ]; then
+    # use host's git.exe in wsl prompt to make it fast
+    zstyle ':vcs_info:git.exe*' formats '::%b %a %m%u%c '
+    zstyle ':vcs_info:git.exe*' check-for-changes true
+else
+    zstyle ':vcs_info:git*' formats '::%b %a %m%u%c '
+    zstyle ':vcs_info:git*' check-for-changes true
+fi
 
 RPROMPT='%F{#504945}%n@%m%f'
 PROMPT='%F{#7c6f64}%~%f%F{green}${vcs_info_msg_0_}%f
