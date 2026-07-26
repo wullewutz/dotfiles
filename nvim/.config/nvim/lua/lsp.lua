@@ -1,16 +1,14 @@
--- Stolen from https://github.com/neovim/nvim-lspconfig#Suggested-configuration
--- Setup language servers.
-local lspconfig = require('lspconfig')
-lspconfig.rust_analyzer.setup {
-  -- Server-specific settings. See `:help lspconfig-setup`
+vim.lsp.config("rust_analyzer", {
   settings = {
-    ['rust-analyzer'] = {
+    ["rust-analyzer"] = {
       procMacro = {
-        enable = true
+        enable = true,
       },
     },
   },
-}
+})
+
+vim.lsp.enable("rust_analyzer")
 
 
 -- Global mappings.
