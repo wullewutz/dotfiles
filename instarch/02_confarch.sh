@@ -4,7 +4,7 @@ PACMAN_ARGS="--noconfirm --needed"
 
 # Abort on errors
 set -e
-rm $HOME/.profile
+rm -f $HOME/.profile
 
 # XDG base directory specification
 echo "export XDG_CONFIG_HOME=$HOME/.config" >> $HOME/.profile
@@ -76,12 +76,13 @@ sudo pacman ${PACMAN_ARGS} -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf \
 #remove remains of previous installations
 rm -rf $HOME/.config/yazi/flavors
 rm -f $HOME/.config/yazi/package.toml
-ya pack -a bennyyip/gruvbox-dark
+ya pkg add bennyyip/gruvbox-dark
 stow yazi
 
 # pipewire sound
 sudo pacman ${PACMAN_ARGS} -S pipewire pipewire-audio pipewire-pulse \
-                              pipewire-alsa pipewire-jack wireplumber
+                              pipewire-alsa pipewire-jack wireplumber \
+                              pavucontrol
 systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # bluetooth
@@ -100,6 +101,7 @@ stow sway
 stow waybar
 stow mako
 cargo install yofi # until yofi is available via arch repos
+stow yofi
 handlr set 'image/*' swayimg.desktop
 
 # wallpaper
