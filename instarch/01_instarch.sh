@@ -17,7 +17,8 @@ echo "Enter swapfile size e.g. '33G':"
 read SWAP_SIZE
 echo "Host name"
 read HOSTNAME
-echo "Disk e.g. '/dev/sda' or '/dev/nvme0n1'"
+lsblk
+echo "Disk (not partition) e.g. '/dev/sda' or '/dev/nvme0n1'"
 read DISK
 
 # Determine partition suffix based on disk type
