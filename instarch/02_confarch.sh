@@ -43,7 +43,6 @@ sudo pacman ${PACMAN_ARGS} -S stow
 
 # git
 sudo pacman ${PACMAN_ARGS} -S git gitui
-git pull
 stow git
 
 # zshell
@@ -70,6 +69,12 @@ echo "export TERMINAL_CMD=\"alacritty -e\"" >> $HOME/.profile
 sudo pacman ${PACMAN_ARGS} -S zellij
 stow zellij
 
+# pipewire sound
+sudo pacman ${PACMAN_ARGS} -S pipewire pipewire-audio pipewire-pulse \
+                              pipewire-alsa pipewire-jack wireplumber \
+                              pavucontrol
+systemctl --user enable --now pipewire pipewire-pulse wireplumber
+
 #yazi file manager
 sudo pacman ${PACMAN_ARGS} -S yazi ffmpeg p7zip jq poppler fd ripgrep fzf \
                               zoxide imagemagick ueberzugpp
@@ -78,12 +83,6 @@ rm -rf $HOME/.config/yazi/flavors
 rm -f $HOME/.config/yazi/package.toml
 ya pkg add bennyyip/gruvbox-dark
 stow yazi
-
-# pipewire sound
-sudo pacman ${PACMAN_ARGS} -S pipewire pipewire-audio pipewire-pulse \
-                              pipewire-alsa pipewire-jack wireplumber \
-                              pavucontrol
-systemctl --user enable --now pipewire pipewire-pulse wireplumber
 
 # bluetooth
 sudo pacman ${PACMAN_ARGS} -S bluez bluez-utils blueman
