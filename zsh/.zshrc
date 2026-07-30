@@ -26,7 +26,7 @@ else
     zstyle ':vcs_info:git*' check-for-changes true
 fi
 
-RPROMPT='%F{#504945}%n@%m%f'
+#RPROMPT='%F{#504945}%n@%m%f'
 PROMPT='%F{#7c6f64}%~%f%F{green}${vcs_info_msg_0_}%f
 %F{green}> %f'
 
