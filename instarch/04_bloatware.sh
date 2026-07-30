@@ -47,7 +47,7 @@ sudo pacman ${PACMAN_ARGS} -S keepassxc
 sudo pacman ${PACMAN_ARGS} -S lutris wine-staging
 sudo pacman ${PACMAN_ARGS} -S lib32-mesa lib32-mesa-utils vulkan-intel \
                               lib32-vulkan-intel vulkan-icd-loader \
-                              lib32-vulkan-icd-loader
+                              lib32-vulkan-icd-loader vulkan-radeon lib32-vulkan-radeon
 sudo pacman ${PACMAN_ARGS} -S --asdeps giflib lib32-giflib gnutls lib32-gnutls \
     v4l-utils lib32-v4l-utils libpulse lib32-libpulse alsa-plugins \
     lib32-alsa-plugins alsa-lib lib32-alsa-lib sqlite lib32-sqlite \
